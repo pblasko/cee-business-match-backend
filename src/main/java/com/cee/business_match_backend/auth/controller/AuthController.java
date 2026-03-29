@@ -1,6 +1,7 @@
 package com.cee.business_match_backend.auth.controller;
 
 import com.cee.business_match_backend.auth.dto.AuthResponse;
+import com.cee.business_match_backend.auth.dto.LoginRequest;
 import com.cee.business_match_backend.auth.dto.RegisterRequest;
 import com.cee.business_match_backend.auth.service.AuthService;
 import jakarta.validation.Valid;
@@ -17,6 +18,11 @@ public class AuthController {
     @PostMapping("/register")
     public AuthResponse register(@Valid @RequestBody RegisterRequest request) {
         return authService.register(request);
+    }
+
+    @PostMapping("/login")
+    public AuthResponse login(@Valid @RequestBody LoginRequest request) {
+        return authService.login(request);
     }
 
 }
