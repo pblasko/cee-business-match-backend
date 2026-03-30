@@ -23,4 +23,7 @@ public interface ContactRequestRepository extends JpaRepository<ContactRequest, 
     Optional<ContactRequest> findByIdAndOfferCreatorId(Long requestId, Long creatorId);
 
     long countByOfferIdAndSenderRoleAndStatus(Long offerId, Role senderRole, ContactRequestStatus status);
+
+    List<ContactRequest> findByOfferIdAndSenderRoleAndIdNot(Long offerId, Role senderRole, Long excludedId);
+
 }

@@ -2,6 +2,7 @@ package com.cee.business_match_backend.contactrequest.controller;
 
 import com.cee.business_match_backend.contactrequest.dto.ContactRequestResponse;
 import com.cee.business_match_backend.contactrequest.dto.CreateContactRequest;
+import com.cee.business_match_backend.contactrequest.dto.UpdateContactRequestStatusRequest;
 import com.cee.business_match_backend.contactrequest.service.ContactRequestService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +32,13 @@ public class ContactRequestController {
     @GetMapping("/received")
     public List<ContactRequestResponse> getReceivedRequests(Authentication authentication) {
         return contactRequestService.getReceivedRequests(authentication.getName());
+    }
+
+    @PutMapping("/{id}/status")
+    public ContactRequestResponse updateStatus(@PathVariable Long id,
+                                               @Valid @RequestBody UpdateContactRequestStatusRequest request,
+                                               Authentication authentication) {
+        return contactRequestService.updateRequestStatus(id, request, authentication.getName());
     }
 
 }
