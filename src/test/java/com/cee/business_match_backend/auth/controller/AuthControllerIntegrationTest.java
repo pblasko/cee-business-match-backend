@@ -2,6 +2,8 @@ package com.cee.business_match_backend.auth.controller;
 
 import com.cee.business_match_backend.auth.model.Role;
 import com.cee.business_match_backend.auth.repository.UserRepository;
+import com.cee.business_match_backend.contactrequest.repository.ContactRequestRepository;
+import com.cee.business_match_backend.offer.repository.OfferRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,8 +34,16 @@ class AuthControllerIntegrationTest {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private OfferRepository offerRepository;
+
+    @Autowired
+    private ContactRequestRepository contactRequestRepository;
+
     @BeforeEach
     void setUp() {
+        contactRequestRepository.deleteAll();
+        offerRepository.deleteAll();
         userRepository.deleteAll();
     }
 
